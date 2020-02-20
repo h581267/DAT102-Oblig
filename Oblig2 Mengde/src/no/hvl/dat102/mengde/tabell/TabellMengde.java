@@ -152,16 +152,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
 			leggTil(teller.next());
 	}
 
-	/*
-	 * Denne versjonen av unionen er lite effekktiv
-	 * 
-	 * @Override public MengdeADT<T> union(MengdeADT<T> m2) { TabellMengde<T> begge
-	 * = new TabellMengde<T>(); for (int i = 0; i < antall; i++) {
-	 * begge.leggTil(tab[i]); } Iterator<T> teller = m2.oppramser();
-	 * 
-	 * while (teller.hasNext()) { begge.leggTil(teller.next()); } return
-	 * (MengdeADT<T>)begge; }
-	 */
+	
 	@Override
 
 	public MengdeADT<T> union(MengdeADT<T> m2) {
@@ -231,6 +222,14 @@ public class TabellMengde<T> implements MengdeADT<T> {
 		}
 		tab[antall] = element;
 		antall++;
+	}
+	@Override
+	public String toString() {
+		String resultat = "";
+		for(T element : tab) {
+			resultat += element.toString() + "\t";
+		}
+		return resultat;
 	}
 
 }// class

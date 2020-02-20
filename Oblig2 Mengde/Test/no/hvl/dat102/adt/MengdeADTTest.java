@@ -51,6 +51,24 @@ public abstract class MengdeADTTest {
 		
 		fasit.equals(m1.union(m2));
 	}
+	@Test
+	public final void unionTestIngenFelles() {
+		
+		m1.leggTil(e0);
+		m1.leggTil(e1);
+		m1.leggTil(e2);
+		
+		m2.leggTil(e3);
+		m2.leggTil(e4);
+	
+		fasit.leggTil(e0);
+		fasit.leggTil(e1);
+		fasit.leggTil(e2);
+		fasit.leggTil(e3);
+		fasit.leggTil(e4);
+		
+		fasit.equals(m1.union(m2));
+	}
 	
 	@Test
 	public final void snittTest() {
@@ -62,10 +80,20 @@ public abstract class MengdeADTTest {
 		m2.leggTil(e2);
 		m2.leggTil(e3);
 		m2.leggTil(e4);
-	
 		
 		fasit.leggTil(e2);
 		
+		fasit.equals(m1.snitt(m2));
+	}
+	@Test
+	public final void snittTestIngenFelles() {
+		
+		m1.leggTil(e0);
+		m1.leggTil(e1);
+		m1.leggTil(e2);
+	
+		m2.leggTil(e3);
+		m2.leggTil(e4);
 		
 		fasit.equals(m1.snitt(m2));
 	}
@@ -87,6 +115,25 @@ public abstract class MengdeADTTest {
 		
 		
 		fasit.equals(m1.snitt(m2));
+	}
+	
+	@Test
+	public final void differensTestIngenFelles() {
+		
+		m1.leggTil(e0);
+		m1.leggTil(e1);
+		m1.leggTil(e2);
+		
+		m2.leggTil(e3);
+		m2.leggTil(e4);
+	
+		
+		fasit.leggTil(e0);
+		fasit.leggTil(e1);
+		fasit.leggTil(e2);
+		
+		
+		fasit.equals(m1.differens(m2));
 	}
 
 }
