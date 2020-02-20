@@ -11,7 +11,7 @@ public class Ordliste3 {
 
 		String[] ord1 = { "God", "dag", "Hans", "Hansen", "Hansaby", "Olsen", "Ole", "buss", "rute", "Bergen" };
 
-		String[] ord2 = { "God", "Hei", "Eva", "Oslo", "Førde", "Olsen", };
+		String[] ord2 = { "God", "Hei", "Eva", "Oslo", "FÃ¸rde", "Olsen", };
 
 		for (int i = 0; i < ord1.length; i++) {
 			ordListe1.leggTil(ord1[i]);
