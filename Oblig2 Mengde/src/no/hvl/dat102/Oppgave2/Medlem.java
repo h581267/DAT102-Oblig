@@ -1,6 +1,7 @@
 package no.hvl.dat102.Oppgave2;
 
 import no.hvl.dat102.mengde.adt.MengdeADT;
+import no.hvl.dat102.mengde.kjedet.*;
 
 public class Medlem {
 
@@ -39,7 +40,7 @@ public class Medlem {
 	}
 	
 	public boolean passerTil(Medlem medlem2) {
-		return (hobbyer.equals(medlem2.hobbyer)); 
+		return (hobbyer.equals(medlem2.getHobbyer())); 
 	}
 	
 	public String toString() {

@@ -111,13 +111,11 @@ public class TabellMengde<T> implements MengdeADT<T> {
 
 	@Override
 	public boolean equals(Object m2) {
-		if (erTom()) {
-			throw new EmptyCollectionException("Tom tabell");
-		}
 
 		if (m2 == this) {
 			return true;
 		}
+		
 
 		if (m2 == null || !(m2 instanceof TabellMengde)) { // Sjekker om m2 er en tabellmengde
 			return false;

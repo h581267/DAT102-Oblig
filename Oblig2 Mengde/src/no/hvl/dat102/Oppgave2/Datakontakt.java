@@ -15,16 +15,16 @@ public class Datakontakt {
 	}
 
 	public void leggTilMedlem(Medlem person) {
-		if (antall >= tab.length) {
+		if (getAntall() >= tab.length) {
 			utvid();
 		}
-		tab[antall] = person;
-		antall++;
+		tab[getAntall()] = person;
+		antall = getAntall() + 1;
 	}
 
 	public void utvid() {
 		Medlem[] ny = new Medlem[tab.length * 2];
-		for (int i = 0; i < antall; i++) {
+		for (int i = 0; i < getAntall(); i++) {
 			ny[i] = tab[i];
 		}
 		tab = ny;
@@ -34,7 +34,7 @@ public class Datakontakt {
 		int indeks = -1;
 		int i = 0;
 		boolean funnet = false;
-		while (i < antall && !funnet) {
+		while (i < getAntall() && !funnet) {
 			if (tab[i].getNavn() == medlemsnavn) {
 				indeks = i;
 				funnet = true;
@@ -49,23 +49,23 @@ public class Datakontakt {
 		boolean funnet = false;
 		int i = 0;
 		int mIndeks = finnMedlemsIndeks(medlemsnavn);
-		int m2Indeks = -1;
 		Medlem m1 = null;
-		
-		if(mIndeks != -1) {
+
+		if (mIndeks != -1) {
 			m1 = tab[mIndeks];
-			
-			while(i < antall && !funnet) {
-				if(m1.passerTil(tab[i]) && tab[i].getStatusIndeks() != -1) {
+
+			while (i < getAntall() && !funnet) {
+				if (m1.passerTil(tab[i]) && tab[i].getStatusIndeks() == -1 && m1 != tab[i]) {
 					m1.setStatusIndeks(i);
 					tab[i].setStatusIndeks(mIndeks);
 					funnet = true;
-					
+
 				}
 				i++;
+			}
+			return m1.getStatusIndeks();
 		}
-		}
-		return m2Indeks;
+		return -1;
 	}
 
 	public void tilbakestillStatusIndeks(String medlemsnavn) {
@@ -73,17 +73,27 @@ public class Datakontakt {
 		int mIndeks = finnMedlemsIndeks(medlemsnavn);
 		Medlem m1 = null;
 		Medlem m2 = null;
-		
-		if(mIndeks != -1) {
+
+		if (mIndeks != -1) {
 			m1 = tab[mIndeks];
-			
-			if(m1.getStatusIndeks() != -1) {
-			int m2Indeks = m1.getStatusIndeks();
-			m2 = tab[m2Indeks];
-			
-			m1.setStatusIndeks(-1);
-			m2.setStatusIndeks(-1);
+
+			if (m1.getStatusIndeks() != -1) {
+				int m2Indeks = m1.getStatusIndeks();
+				m2 = tab[m2Indeks];
+
+				m1.setStatusIndeks(-1);
+				m2.setStatusIndeks(-1);
 			}
+		}
+	}
+
+	public int getAntall() {
+		return antall;
+	}
+
+	public void skrivUt() {
+		for (int i = 0; i < antall; i++) {
+			System.out.println(tab[i].toString() + "\n");
 		}
 	}
 }

@@ -10,6 +10,10 @@ public class Hobby {
 	public String getHobbyNavn() {
 		return hobbyNavn;
 	}
+	
+	public void setHobbynavn(String hobby) {
+		this.hobbyNavn = hobby;
+	}
 
 	public String toString(){
 		return "<" + hobbyNavn + ">";

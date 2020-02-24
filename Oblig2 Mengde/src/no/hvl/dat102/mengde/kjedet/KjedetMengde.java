@@ -160,15 +160,22 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 	@Override
 	public MengdeADT<T> union(MengdeADT<T> m2) {
 		MengdeADT<T> begge = new KjedetMengde<T>();
-		T element = null;
 		LinearNode<T> aktuell = start;
+		T element = null;
 
-		while (aktuell.getNeste() != null) {
-			((KjedetMengde<T>) begge).settInn(aktuell.getElement());
-			aktuell = aktuell.getNeste();
+		if (start != null) {
+			((KjedetMengde<T>) begge).settInn(start.getElement());
 		}
 
+		if (aktuell != null) {
+
+			while (aktuell.getNeste() != null) {
+				aktuell = aktuell.getNeste();
+				((KjedetMengde<T>) begge).settInn(aktuell.getElement());
+			}
+		}
 		Iterator<T> it = m2.oppramser();
+
 		while (it.hasNext()) {
 			element = it.next();
 			if (!begge.inneholder(element)) {
@@ -177,7 +184,7 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 		}
 
 		return begge;
-	}//
+	}
 
 	@Override
 	public MengdeADT<T> snitt(MengdeADT<T> m2) {

@@ -1,12 +1,9 @@
 package no.hvl.dat102.adt;
 
 import static org.junit.Assert.*;
-import org.junit.jupiter.api.*;
 import org.junit.Test;
-
 import org.junit.Before;
 
-import no.hvl.dat102.exception.EmptyCollectionException;
 import no.hvl.dat102.mengde.adt.*;
 
 public abstract class MengdeADTTest {
@@ -37,19 +34,25 @@ public abstract class MengdeADTTest {
 		
 		m1.leggTil(e0);
 		m1.leggTil(e1);
-		m1.leggTil(e2);
-		
+		m2.leggTil(e1);
 		m2.leggTil(e2);
-		m2.leggTil(e3);
-		m2.leggTil(e4);
-	
+		
 		fasit.leggTil(e0);
 		fasit.leggTil(e1);
 		fasit.leggTil(e2);
-		fasit.leggTil(e3);
-		fasit.leggTil(e4);
 		
-		fasit.equals(m1.union(m2));
+		assertTrue(fasit.equals(m1.union(m2)));
+	}
+	@Test
+	public final void unionTestM1Tom() {
+		
+		m2.leggTil(e1);
+		m2.leggTil(e2);
+		
+		fasit.leggTil(e1);
+		fasit.leggTil(e2);
+		
+		assertTrue(fasit.equals(m1.union(m2)));
 	}
 	@Test
 	public final void unionTestIngenFelles() {
@@ -67,7 +70,7 @@ public abstract class MengdeADTTest {
 		fasit.leggTil(e3);
 		fasit.leggTil(e4);
 		
-		fasit.equals(m1.union(m2));
+		assertTrue(fasit.equals(m1.union(m2)));
 	}
 	
 	@Test
@@ -83,7 +86,7 @@ public abstract class MengdeADTTest {
 		
 		fasit.leggTil(e2);
 		
-		fasit.equals(m1.snitt(m2));
+		assertTrue(fasit.equals(m1.snitt(m2)));
 	}
 	@Test
 	public final void snittTestIngenFelles() {
@@ -95,7 +98,7 @@ public abstract class MengdeADTTest {
 		m2.leggTil(e3);
 		m2.leggTil(e4);
 		
-		fasit.equals(m1.snitt(m2));
+		assertTrue(fasit.equals(m1.snitt(m2)));
 	}
 	
 	@Test
@@ -107,14 +110,12 @@ public abstract class MengdeADTTest {
 		
 		m2.leggTil(e2);
 		m2.leggTil(e3);
-		m2.leggTil(e4);
-	
 		
 		fasit.leggTil(e0);
 		fasit.leggTil(e1);
 		
 		
-		fasit.equals(m1.snitt(m2));
+		assertTrue(fasit.equals(m1.differens(m2)));
 	}
 	
 	@Test
@@ -133,7 +134,9 @@ public abstract class MengdeADTTest {
 		fasit.leggTil(e2);
 		
 		
-		fasit.equals(m1.differens(m2));
+		assertTrue(fasit.equals(m1.differens(m2)));
 	}
+	
+	
 
 }
