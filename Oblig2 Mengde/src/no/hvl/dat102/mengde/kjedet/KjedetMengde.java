@@ -74,10 +74,9 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 			throw new EmptyCollectionException("mengde er tom");
 
 		boolean slettet = false;
-		LinearNode<T> forgjenger, aktuell;
+		LinearNode<T> aktuell;
 		T resultat = null;
 		aktuell = start;
-		forgjenger = null;
 
 		if (start.getElement().equals(element)) {
 			resultat = start.getElement();
@@ -242,7 +241,7 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 		String resultat = "";
 		LinearNode<T> aktuell = start;
 		while (aktuell != null) {
-			resultat += aktuell.getElement().toString() + "\t";
+			resultat += aktuell.getElement().toString() + " ";
 			aktuell = aktuell.getNeste();
 		}
 		return resultat;

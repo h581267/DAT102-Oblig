@@ -14,17 +14,25 @@ public class Datakontakt {
 		antall = 0;
 	}
 
+	public Medlem[] getMedlemTab() {
+		return tab;
+	}
+
+	public int getAntall() {
+		return antall;
+	}
+
 	public void leggTilMedlem(Medlem person) {
-		if (getAntall() >= tab.length) {
+		if (antall >= tab.length) {
 			utvid();
 		}
-		tab[getAntall()] = person;
-		antall = getAntall() + 1;
+		tab[antall] = person;
+		antall++;
 	}
 
 	public void utvid() {
 		Medlem[] ny = new Medlem[tab.length * 2];
-		for (int i = 0; i < getAntall(); i++) {
+		for (int i = 0; i < antall; i++) {
 			ny[i] = tab[i];
 		}
 		tab = ny;
@@ -34,8 +42,8 @@ public class Datakontakt {
 		int indeks = -1;
 		int i = 0;
 		boolean funnet = false;
-		while (i < getAntall() && !funnet) {
-			if (tab[i].getNavn() == medlemsnavn) {
+		while (i < antall && !funnet) {
+			if (tab[i] != null && tab[i].getNavn().equals(medlemsnavn)) {
 				indeks = i;
 				funnet = true;
 			}
@@ -45,17 +53,18 @@ public class Datakontakt {
 		return indeks;
 	}
 
+
 	public int finnPartnerFor(String medlemsnavn) {
 		boolean funnet = false;
 		int i = 0;
 		int mIndeks = finnMedlemsIndeks(medlemsnavn);
 		Medlem m1 = null;
 
-		if (mIndeks != -1) {
+		if (mIndeks != -1 && tab[mIndeks] != null) {
 			m1 = tab[mIndeks];
 
-			while (i < getAntall() && !funnet) {
-				if (m1.passerTil(tab[i]) && tab[i].getStatusIndeks() == -1 && m1 != tab[i]) {
+			while (i < antall && !funnet) {
+				if (m1.passerTil(tab[i]) && tab[i].getStatusIndeks() == -1 && m1.getStatusIndeks() == -1 && m1 != tab[i]) {
 					m1.setStatusIndeks(i);
 					tab[i].setStatusIndeks(mIndeks);
 					funnet = true;
@@ -87,13 +96,11 @@ public class Datakontakt {
 		}
 	}
 
-	public int getAntall() {
-		return antall;
-	}
-
 	public void skrivUt() {
 		for (int i = 0; i < antall; i++) {
-			System.out.println(tab[i].toString() + "\n");
+			if (tab[i] != null) {
+				System.out.println(tab[i].toString() + "\n");
+			}
 		}
 	}
 }

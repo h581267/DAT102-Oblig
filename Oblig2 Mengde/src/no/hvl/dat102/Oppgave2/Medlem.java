@@ -44,6 +44,6 @@ public class Medlem {
 	}
 	
 	public String toString() {
-		return navn + ", " + hobbyer.toString() + "\nStatusindeks:" + statusIndeks;
+		return navn + ", <" + hobbyer.toString() + ">\nStatusindeks:" + statusIndeks;
 	}
 }

@@ -89,6 +89,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
 				for (int j = i; j < antall; j++) {
 					tab[j] = tab[j + 1];
 				}
+				tab[antall] = null;
 				antall--;
 
 			}
@@ -135,7 +136,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
 				}
 
 			}
-
+			
 		} else {
 			likeMengder = false;
 		}

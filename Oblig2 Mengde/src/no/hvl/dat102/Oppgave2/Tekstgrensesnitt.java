@@ -18,17 +18,17 @@ public class Tekstgrensesnitt {
 	public Medlem lesMedlem() {
 		Scanner tastatur = new Scanner(System.in);
 
-		MengdeADT hobbyer = new KjedetMengde();
+		MengdeADT<Hobby> hobbyer = new KjedetMengde<Hobby>();
 
 		System.out.print("Skriv inn navn til medlem: ");
 		String navn = tastatur.next();
 		String hobby = "";
 
-		while (!hobby.equals("avslutt")) {
-			System.out.print("Skriv inn hobby (eller avslutt ved å skrive 'avslutt'): ");
+		while (!hobby.equals("stopp")) {
+			System.out.print("Skriv inn hobby (eller avslutt ved å skrive 'stopp'): ");
 			hobby = tastatur.next();
 			Hobby h = new Hobby(hobby);
-			if (!hobby.equals("avslutt")) {
+			if (!hobby.equals("stopp")) {
 				hobbyer.leggTil(h);
 			}
 		}
@@ -39,10 +39,23 @@ public class Tekstgrensesnitt {
 	}
 
 	public static void skrivUtHobbyListe(Medlem medlem) {
-		System.out.print(medlem.getNavn() + " sin liste over hobbyer " + medlem.getHobbyer().toString());
+
+		Iterator<Hobby> itr = medlem.getHobbyer().oppramser();
+		System.out.print("<" + itr.next());
+		while (itr.hasNext()) {
+			System.out.print(", " + itr.next());
+		}
+		System.out.print(">");
 	}
 
 	public static void skrivParListe(Datakontakt arkiv) {
-
+		Medlem[] tab = arkiv.getMedlemTab();
+		for (int i = 0; i < arkiv.getAntall(); i++) {
+			int indeks = arkiv.finnPartnerFor(tab[i].getNavn());
+			if (indeks >= 0 && i != indeks && tab[indeks].getStatusIndeks() < tab[i].getStatusIndeks()) {
+				System.out.print(tab[i].getNavn() + " macher med " + tab[indeks].getNavn() + " og deres hobbyer er: ");
+				skrivUtHobbyListe(tab[i]);
+			}
+		}
 	}
 }

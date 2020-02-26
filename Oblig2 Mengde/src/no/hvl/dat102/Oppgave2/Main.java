@@ -8,16 +8,19 @@ public class Main {
 		Datakontakt d1 = new Datakontakt(10);
 		d1.leggTilMedlem(t1.lesMedlem());
 		d1.leggTilMedlem(t1.lesMedlem());
+		d1.leggTilMedlem(t1.lesMedlem());
+	
+		System.out.println();
 		
+		t1.skrivParListe(d1);
+		
+		System.out.println();
 		
 		System.out.println("Utskrift etter innlesning av alle medlemmer");
 		d1.skrivUt();
-		
-		d1.finnPartnerFor("Sebastian");
-		
-		System.out.println("Utskrift etter matching av Sebastian");
-		d1.skrivUt();
 
+		
+		
 	}
 
 }

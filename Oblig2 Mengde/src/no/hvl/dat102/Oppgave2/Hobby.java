@@ -16,7 +16,7 @@ public class Hobby {
 	}
 
 	public String toString(){
-		return "<" + hobbyNavn + ">";
+		return hobbyNavn;
       }
 
 	public boolean equals(Object hobby2){ //
