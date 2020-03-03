@@ -23,8 +23,7 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 	public T fjernSiste() {
 		if (erTom())
 			throw new EmptyCollectionException("ordnet liste");
-
-		T resultat = liste[bak];
+		T resultat = liste[bak-1];
 		bak--;
 
 		return resultat;
@@ -58,8 +57,7 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 		if (erTom())
 			throw new EmptyCollectionException("ordnet liste");
 
-		T resultat = null;
-		// ...Fyll ut
+		T resultat = liste[bak-1];
 
 		return resultat;
 	}
@@ -76,11 +74,37 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 
 	@Override
 	public void leggTil(T element) {
-		if (bak >= liste.length) {
-			utvid();
+
+		if (erTom()) {
+			liste[0] = element;
+			bak++;
 		}
-		liste[bak] = element;
-		bak++;
+
+		else {
+
+			if (bak >= liste.length) {
+				utvid();
+			}
+
+			boolean lagtTil = false;
+			int i = 0;
+
+			while (i < bak && !lagtTil) {
+				if (liste[i].compareTo(element) >= 0) {
+					bak++;
+					for (int j = bak; j > i; j--) {
+						liste[j] = liste[j - 1];
+					}
+					liste[i] = element;
+					lagtTil = true;
+				}
+				i++;
+			}
+			if(!lagtTil) {
+				liste[bak] = element;
+				bak++;
+			}
+		}
 	}
 
 	@Override
@@ -117,7 +141,7 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 		}
 
 		return resultat;
-	}
+	} 
 
 	public String toString() {
 		String resultat = "";

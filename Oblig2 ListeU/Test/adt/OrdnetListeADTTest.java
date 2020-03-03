@@ -79,9 +79,10 @@ public abstract class OrdnetListeADTTest {
 		liste.leggTil(e1);
 		liste.leggTil(e0);
 		liste.leggTil(e5);
-		assertEquals(e3, liste.fjernFoerste());
-		assertEquals(e1, liste.fjernFoerste());
+		
 		assertEquals(e0, liste.fjernFoerste());
+		assertEquals(e1, liste.fjernFoerste());
+		assertEquals(e3, liste.fjernFoerste());
 		assertEquals(e5, liste.fjernFoerste());
 		
 		// ... Legg til elementer og bruk fjernFoerste
@@ -89,12 +90,14 @@ public abstract class OrdnetListeADTTest {
 
 	@Test
 	public final void viseOrdnetIkkeStigende() { // 4 >= 5 >= 5 >= 5 >= 6 ...
+		
 		liste.leggTil(e1);
 		liste.leggTil(e2);
 		liste.leggTil(e5);
 		liste.leggTil(e0);
 		liste.leggTil(e4);
 		liste.leggTil(e3);
+		
 		assertEquals(e5, liste.fjernSiste());
 		assertEquals(e4, liste.fjernSiste());
 		assertEquals(e3, liste.fjernSiste());
@@ -162,7 +165,11 @@ public abstract class OrdnetListeADTTest {
 	 */
 	@Test
 	public final void leggTilFjernErTom() {
-		// ...Fyll ut. Legg inn elementer og fjern de
+		liste.leggTil(e0);
+		liste.leggTil(e1);
+		liste.fjernFoerste();
+		liste.fjernSiste();
+		assertTrue(liste.erTom());
 	}
 
 	/**

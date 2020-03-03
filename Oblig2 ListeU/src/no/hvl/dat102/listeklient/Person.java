@@ -48,10 +48,17 @@ public class Person implements Comparable<Person> {
 		return (foedselsaar + "\t" + etternavn + ", " + fornavn);
 	}
 
+	@Override
 	public int compareTo(Person denAndrePersonen) {
-		int resultat = 0;
-		//... Fyll ut
-		//Kall på compareTo i Stringklassen
+		int resultat = foedselsaar - denAndrePersonen.getFoedselsaar();
+
+		if (resultat == 0) {
+			resultat = etternavn.compareTo(denAndrePersonen.getEtternavn());
+		}
+		if (resultat == 0) {
+			resultat = fornavn.compareTo(denAndrePersonen.getFornavn());
+		}
+
 		return resultat;
 	}//
 
