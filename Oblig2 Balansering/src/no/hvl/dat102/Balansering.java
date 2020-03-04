@@ -47,7 +47,7 @@ public class Balansering {
 				char start = stabel.pop();
 				//Feilmelding 2
 				if (!passer(start, slutt)) {
-					System.out.println("Feilmelding: den er ikke balansert " + start + " og " + slutt + " hører ikke sammen, , feilen ligger på linjenr: " + linjenr);
+					System.out.println("Feilmelding: den er ikke balansert " + start + " og " + slutt + " hører ikke sammen, feilen ligger på linjenr: " + linjenr);
 					stabel.push(start);
 					
 				}
