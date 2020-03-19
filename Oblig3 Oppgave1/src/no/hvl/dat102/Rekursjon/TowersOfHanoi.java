@@ -1,7 +1,9 @@
 package no.hvl.dat102.Rekursjon;
 
+
 public class TowersOfHanoi {
 	private int totalDisks;
+	private long teller;
 
 	/**
 	 * Sets up the puzzle with the specified number of disks. *
@@ -10,6 +12,7 @@ public class TowersOfHanoi {
 	 */
 	public TowersOfHanoi(int disks) {
 		totalDisks = disks;
+		teller = 0;
 	}
 
 	/**
@@ -17,7 +20,14 @@ public class TowersOfHanoi {
 	 * from tower 1 to tower 3 using tower 2.
 	 */
 	public void solve() {
+		long start = System.currentTimeMillis();
 		moveTower(totalDisks, 1, 3, 2);
+		System.out.println("Antall utførelser: " + teller);
+		long finish = System.currentTimeMillis();
+		long tid = finish - start;
+		
+		System.out.println("Det tok " + tid + " ms å flytte tårnene");
+		
 	}
 
 	/**
@@ -49,7 +59,8 @@ public class TowersOfHanoi {
 	
 	
 	private void moveOneDisk(int start, int end) {
-		System.out.println("Move one disk from " + start + " to " + end); 
+		teller++;
+		//System.out.println("Move one disk from " + start + " to " + end); 
 		}
 		 
 }

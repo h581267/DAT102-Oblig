@@ -10,7 +10,7 @@ import no.hvl.dat102.exception.EmptyCollectionException;
 //********************************************************************
 
  public class TabellKoe<T> implements KoeADT<T>{
-   private final static int STDK = 100;
+   private final static int STDK = 128000;
    private int bak;
    private T[] koe; 
 
