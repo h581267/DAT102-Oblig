@@ -227,7 +227,7 @@ public class Sortering {
 
 	}
 
-	// Radix Sortering - Fungerer kun når alle tall har sifferantall 2
+	// Radix Sortering
 	public static void radixSort(Integer[] tab) {
 		String temp;
 		Integer tallObj;
