@@ -5,17 +5,17 @@ import java.util.Iterator;
 import no.hvl.dat102.adt.BSTreADT;
 
 //********************************************************************
-// KjedetBinærSøkeTre.java        
+// KjedetBinï¿½rSï¿½keTre.java        
 //
 //********************************************************************
 
-public class KjedetBSTre<T extends Comparable<T>> implements BSTreADT<T>,Iterable<T> {
+public class KjedetBSTre<T extends Comparable<T>> implements BSTreADT<T>, Iterable<T> {
 
 	private int antall;
 	private BinaerTreNode<T> rot;
 
 	/******************************************************************
-	 * Oppretter et tomt binært søketre.
+	 * Oppretter et tomt binï¿½rt sï¿½ketre.
 	 ******************************************************************/
 	public KjedetBSTre() {
 		antall = 0;
@@ -23,7 +23,7 @@ public class KjedetBSTre<T extends Comparable<T>> implements BSTreADT<T>,Iterabl
 	}
 
 	/******************************************************************
-	 * Oppretter et binært søketre med en node..
+	 * Oppretter et binï¿½rt sï¿½ketre med en node..
 	 ******************************************************************/
 	public KjedetBSTre(T element) {
 		rot = new BinaerTreNode<T>(element);
@@ -31,22 +31,22 @@ public class KjedetBSTre<T extends Comparable<T>> implements BSTreADT<T>,Iterabl
 	}
 
 	/*****************************************************************
-	 * Returnerer sann hvis dette binære trett er tomt og usann ellers.
+	 * Returnerer sann hvis dette binï¿½re trett er tomt og usann ellers.
 	 *****************************************************************/
 	public int antall() {
 		return antall;
 	}
 
 	/*****************************************************************
-	 * Returnerer sann hvis dette binære treet er tom og usann ellers.
+	 * Returnerer sann hvis dette binï¿½re treet er tom og usann ellers.
 	 *****************************************************************/
 	public boolean erTom() {
 		return (antall == 0);
 	}
 
 	/**********************************************************************
-	 * Legger det spesifiserte elementet på passende plass i BS-treet. Like
-	 * elementer blir lagt til høyre. Bruk av rekursiv hjelpemetode.
+	 * Legger det spesifiserte elementet pï¿½ passende plass i BS-treet. Like
+	 * elementer blir lagt til hï¿½yre. Bruk av rekursiv hjelpemetode.
 	 ********************************************************************/
 	public void leggTil(T element) {
 		rot = leggTilRek(rot, element);
@@ -54,49 +54,87 @@ public class KjedetBSTre<T extends Comparable<T>> implements BSTreADT<T>,Iterabl
 	}
 
 	private BinaerTreNode<T> leggTilRek(BinaerTreNode<T> p, T element) {
-		// TODO 
-		return null;
+
+		if (p == null) {
+			p = new BinaerTreNode<T>(element);
+			return p;
+		}
+
+		if (element.compareTo(p.getElement()) < 0) {
+			p.setVenstre(leggTilRek(p.getVenstre(), element));
+		} else if (element.compareTo(p.getElement()) >= 0) {
+			p.setHoyre(leggTilRek(p.getHoyre(), element));
+		}
+
+		return p;
 	}
 
 	/******************************************************************
-	 * Legger det spesifiserte elementet på passende plass i dette binære søketreet.
-	 * Like elementer blir lagt til høyre.
+	 * Legger det spesifiserte elementet pï¿½ passende plass i dette binï¿½re sï¿½ketreet.
+	 * Like elementer blir lagt til hï¿½yre.
 	 ******************************************************************/
 
 	public void leggTil2(T element) {
-		// 
+		//
+	}
+
+	
+	/******************************************************************
+	 * Fjerner noden med minste verdi fra dette binï¿½re sï¿½ketreet.
+	 *********************************************************************/
+	public T fjernMin() {
+
+        T svar = null;
+        BinaerTreNode<T> temp = rot;
+        BinaerTreNode<T> forrige = rot;
+
+        if(rot.getVenstre() == null) {
+            svar = rot.getElement();
+            rot = rot.getHoyre();
+        }else {
+
+        while (temp.getVenstre() != null) {
+            forrige = temp;
+            temp = temp.getVenstre();
+        } 
+        svar = temp.getElement();
+        if (temp.getHoyre() != null) {
+            forrige.setVenstre(temp.getHoyre());
+        }else {
+            forrige.setVenstre(null);        }
+        }
+         
+        return svar;
+    }
+
+	/******************************************************************
+	 * Fjerner noden med stï¿½rste verdi fra dette binï¿½re sï¿½ketreet.
+	 ******************************************************************/
+	public T fjernMaks() {
+		// TODO
+		return null;
+	}//
+
+	/******************************************************************
+	 * Returnerer det minste elementet i dette binï¿½re sï¿½ketreet.
+	 ******************************************************************/
+	public T finnMin() {
+		BinaerTreNode<T> temp = rot;
+		while (temp.getVenstre().getElement() != null) {
+			temp = temp.getVenstre();
+		}
+		return temp.getElement();
 	}
 
 	/******************************************************************
-	 * Fjerner noden med minste verdi fra dette binære søketreet.
-	 *********************************************************************/
-	public T fjernMin() {
-		// TODO 
-		return null;
-	}//
-
-	/******************************************************************
-	 * Fjerner noden med største verdi fra dette binære søketreet.
-	 ******************************************************************/
-	public T fjernMaks() {
-		// TODO 
-		return null;
-	}//
-
-	/******************************************************************
-	 * Returnerer det minste elementet i dette binære søketreet.
-	 ******************************************************************/
-	public T finnMin() {
-		// TODO 
-		return null;
-	}//
-
-	/******************************************************************
-	 * Returnerer det største elementet i dette binære søketreet.
+	 * Returnerer det stï¿½rste elementet i dette binï¿½re sï¿½ketreet.
 	 ******************************************************************/
 	public T finnMaks() {
-		// TODO 
-		return null;
+		BinaerTreNode<T> temp = rot;
+		while (temp.getHoyre().getElement() != null) {
+			temp = temp.getHoyre();
+		}
+		return temp.getElement();
 	}//
 
 	/*******************************************************************************
@@ -104,22 +142,33 @@ public class KjedetBSTre<T extends Comparable<T>> implements BSTreADT<T>,Iterabl
 	 * BS-treet, null ellers. Bruk av rekursjon /
 	 ******************************************************************************/
 	public T finn(T element) {
-		// Søk med rekursiv hjelpemetode
-
-		// return finnRek(element, rot);
-		return null;
+		return finnRek(rot, element);
 	}
 
-	// Den rekursive hjelpemetoden for søking
-	
-	// TODO 
+	private T finnRek(BinaerTreNode<T> p, T element) {
+		if (p.getElement() == element) {
+			return p.getElement();
+		} else if (element.compareTo(p.getElement()) < 0) {
+			if (p.getVenstre() != null) {
+				return finnRek(p.getVenstre(), element);
+			}
+			return null;
+		} else {
+			if (p.getHoyre() != null) {
+				return finnRek(p.getHoyre(), element);
+			}
+			return null;
+		}
+	}
+
+	// TODO
 
 	/************************************************************************
 	 * Returnerer en referanse til det spesifiserte elementet hvis det fins i dette
 	 * BS-treet, null ellers. Uten bruk av rekursjon. /
 	 ************************************************************************/
 	public T finn2(T element) {
-		// TODO 
+		// TODO
 		return null;
 	}
 
@@ -133,12 +182,34 @@ public class KjedetBSTre<T extends Comparable<T>> implements BSTreADT<T>,Iterabl
 			visInorden(p.getVenstre());
 			System.out.print(" " + p.getElement());
 			visInorden(p.getHoyre());
-		}  
+		}
+	}
+
+	public int finnHÃ¸yde() {
+		return finnHÃ¸ydeRek(rot);
+	}
+
+	private int finnHÃ¸ydeRek(BinaerTreNode<T> p) {
+		if (rot == null) {
+			return -1;
+		}
+		if (p == null) {
+			return 0;
+		}
+
+		int vhÃ¸yde = finnHÃ¸ydeRek(p.getVenstre());
+		int hhÃ¸yde = finnHÃ¸ydeRek(p.getHoyre());
+
+		return Math.max(vhÃ¸yde, hhÃ¸yde) + 1;
+	}
+
+	public int teoretiskMin() {
+		return (int) (Math.log(antall) / Math.log(2));
 	}
 
 	@Override
 	public Iterator<T> iterator() {
 		return new InordenIterator<T>(rot);
-		
+
 	}
 }// class

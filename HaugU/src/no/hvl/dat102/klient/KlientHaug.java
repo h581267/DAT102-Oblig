@@ -4,7 +4,7 @@ import no.hvl.dat102.TabellHaug;
 
 public class KlientHaug {
 	public static void main(String[] a) {
-		// Tester haugen ved å sortere verdier i en tabell
+		// Tester haugen ved ï¿½ sortere verdier i en tabell
 		// ikke-avtagende.
 		int tab[] = { 300, 10, 30, 2, 100, 33, 1, 200, 18, 54 };
 		TabellHaug<Integer> h1 = new TabellHaug<Integer>();
@@ -13,7 +13,7 @@ public class KlientHaug {
 			h1.leggTilElement((tab[i]));
 		}
 
-		System.out.println("Verdiene i tabellen er nå:");
+		System.out.println("Verdiene i tabellen er nÃ¥:");
 		h1.skrivTab();
 		// Tar ut av haugen og skriver i sortert ikke-avtagende
 		System.out.println("\nHaugen i sortert rekkefoelge:");

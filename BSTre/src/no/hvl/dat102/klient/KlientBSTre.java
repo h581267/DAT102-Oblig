@@ -19,11 +19,12 @@ public class KlientBSTre {
 		bstre.leggTil(8);
 		bstre.leggTil(3);
 
-		// Tester på sortert utskrift
+		// Tester pï¿½ sortert utskrift
 		System.out.println("Skriver ut elementene sortert i bs-treet");
 		bstre.visInorden();
+		
 
-		// Tester på om et bestemt element fins
+		// Tester pï¿½ om et bestemt element fins
 		int element = 8;
 		System.out.println("\nTester paa om elementet " + element + " fins");
 
@@ -40,7 +41,7 @@ public class KlientBSTre {
 			System.out.println("Elementet " + element + " fins i bs-treet");
 		} else {
 			System.out.println("Elementet " + element + " fins ikke i bs-treet");
-		}
+		} 
 	}
 
 }
